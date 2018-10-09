@@ -6,7 +6,7 @@
 https://github.com/alexandervolikov/sportiduino
 
 
-[Описание моих доработок](https://github.com/halny123/sportiduino/NRFstation/)
+[Описание моих доработок](https://github.com/halny123/sportiduino/tree/master/NRFstation)
 
 
 License:         GNU GPLv3

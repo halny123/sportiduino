@@ -51,14 +51,14 @@
   обычным двухсторонним скотчем.
     ![Позиционируем плату и трафарет](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont.jpg)
     
-     Совмещаю трафарет с платой и фиксирую края малярным скотчем.   
+  Совмещаю трафарет с платой и фиксирую края малярным скотчем.   
      
-    ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont1.jpg)
+ ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont1.jpg)
     
-     Наносим паяльную пасту.
-     Отклеиваем скотч с одной стороны, убираем плату. Повторяем процесс для других плат.
+  Наносим паяльную пасту.
+  Отклеиваем скотч с одной стороны, убираем плату. Повторяем процесс для других плат.
      
-     ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont2.jpg)
+  ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont2.jpg)
      
 
 2. Расставляем все компоненты кроме выводных и NRF модуля. Запаиваем феном.
@@ -93,20 +93,20 @@
  СБОРКА КОРПУСА:
 ------------
 Что бы быстрее было собирать станцию сделал два приспособления.
- Одно для позиционирования сверла при сверлении отверствий под светодиод.
- Другое для получение линзы для вклейки в корпус
+Одно для позиционирования сверла при сверлении отверствий под светодиод.
+Другое для получение линзы для вклейки в корпус
  
-     ![Все приспособления](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_All.jpg)
+![Все приспособления](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_All.jpg)
 
 В корпусе сверлю с помощью кондуктора сквозное отверстие 3мм.
 
-     ![Кондуктор для корпуса](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_Box.jpg)
+![Кондуктор для корпуса](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_Box.jpg)
      
 С внутренней стороны снимаю фаску сверлом 5мм до наружной стенки.
 Покупаю самых дешевых выводных 5мм красных светодиода.
 Делаю приспособление из 2-х фанерок 3мм. В одной отверстие 5мм в другой 4-4.5мм. Зажимаю между ними в тисках светодиод. 
 
-     ![приспособление под светодиод](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_Led.jpg)
+![приспособление под светодиод](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_Led.jpg)
      
 Лобзиком спиливаю верхушку светодиода и вклеиваю ее в корпус.
 Так получается полностью разборная конструкция в которой плату можно свободно достать из корпуса.
@@ -173,6 +173,5 @@ https://github.com/TMRh20
 
 ------------------------------------------------
  
-
 [Видео работы первой мелкосерийной партии](https://youtu.be/SSd08Qn7M1Y)
 ------------

@@ -11,6 +11,7 @@
 
 ------------------------------------------------
 Пояснения к схеме:
+
      U7        - место под разъем для джампера (использую для тестовых плат где нужно отключать питание), тогда R10 не паяем. 
 
      R10       - перемычка, ставим в готовых изделиях.
@@ -32,6 +33,7 @@
 ------------
 ![Платы в сборе](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB.jpg)
 Печатные платы делаю оптом (по 10шт) используя паяльную пасту и трафарет.Так выходит намного быстрее. 
+
 10 станций от начала пайки до готового изделия получаются за 6-7часов.
 ![Паяльная паста](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/MECHANIC_XG-80_BGA.jpg)
 
@@ -41,13 +43,15 @@
 Трафарет далал дома на лазерном принтере (2Вт) из плотной глянцевой бумаги (то что было под рукой). 
 Одного трафарета хватило на 30 плат и можно еще пользоваться.
 [Файлы для изготовления трафарета в архиве](https://github.com/halny123/sportiduino/blob/master/NRFstation/PCB/TrafaretPCB_1.3.8.rar)
+
 Если живете в большом городе можно заказать (наверное) в фирме по изготовлению рекламы порезку из пластика, тогда трафарет будет вечный.
 
 ЭТАПЫ ИЗГОТОВЛЕНИЯ:
 ------------
 1. Налаживаем на п.п. трафарет и ракелем (обрезок от пластиковой карты) наносим на плату паяльную пасту.
-     Для удобства работы и позиционирования использую 3-ри дополнительные платы, которые плотно прижимаю к основной и креплу к столу 
-     обычным двухсторонним скотчем.
+     
+  Для удобства работы и позиционирования использую 3-ри дополнительные платы, которые плотно прижимаю к основной и креплу к столу 
+  обычным двухсторонним скотчем.
     ![Позиционируем плату и трафарет](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont.jpg)
      Совмещаю трафарет с платой и фиксирую края малярным скотчем.   
     ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont1.jpg)
@@ -62,7 +66,7 @@
    - ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_SportIduinoNRF_v1.3.8Top.jpg)
 5. Прошиваем Optiboot bootloader.(Какие возникли проблемы и как их решил смотрим ниже).
 6. Заливаем тестовую прошивку и проверяем работу всего кроме RFID и NRF модулей.
-   Тестовый скетч https://github.com/halny123/sportiduino/blob/master/NRFstation/TestStation
+   [Тестовый скетч] (https://github.com/halny123/sportiduino/blob/master/NRFstation/TestStation)
 7. Если все работает запаиваем RFID и NRF модули и тестируем их.
    RFID - модули предварительно проверяю на дальность считывания меток с помощью тестовой станции с запаянным разъемом под RFID модуль.
    ![Тестовая станция](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Plata_testRFmodul.jpg)
@@ -76,20 +80,14 @@
 
  По компонентам, что использовал и выводы:
 ------------
-- На плату паяю SMD светодиод, заказывал 
-  https://ru.aliexpress.com/item/100pcs-Ultra-Bright-3528-LED-SMD-Red-Chip-Surface-Mount-20mA-Light-Emitting-Diode-LED-1210/32765023939.html - 100шт - 1,62$ .
-- Процессор Atmega 328
-  https://ru.aliexpress.com/item/Free-Shipping-20pcs-lot-ATMEGA328P-AU-ATMEGA328P-ATMEL-TQFP-44-100-NEW/1608634088.html брал 40шт притензий нет все работают.
-- RFID RC522
-  https://ru.aliexpress.com/item/B25-50-SAMIORE-RFID-RC522-13-56-6/32831776989.html брал 50шт из 40проверенных 
+- [На плату паяю SMD светодиод](https://ru.aliexpress.com/item/100pcs-Ultra-Bright-3528-LED-SMD-Red-Chip-Surface-Mount-20mA-Light-Emitting-Diode-LED-1210/32765023939.html) - 100шт - 1,62$ .
+- [Процессор Atmega 328] (https://ru.aliexpress.com/item/Free-Shipping-20pcs-lot-ATMEGA328P-AU-ATMEGA328P-ATMEL-TQFP-44-100-NEW/1608634088.html) брал 40шт притензий нет все работают.
+- [RFID RC522] (https://ru.aliexpress.com/item/B25-50-SAMIORE-RFID-RC522-13-56-6/32831776989.html) брал 50шт из 40проверенных 
   (3 модуля работают неудовлетворительно) и почти все карточки не рабочие. Брелки рабочие.
-- NRF24l01
-  https://ru.aliexpress.com/item/Wavgat-10-NRF24L01-2-4/32842054029.html пробный заказ 10шт все работают отлично.
-- RTC DS3231
-  https://ru.aliexpress.com/item/in-stock-FQA40N25/32803523536.html заказал 40шт к качеству есть притензии. Окисленные ножки(плохо паяются)
+- [NRF24l01](https://ru.aliexpress.com/item/Wavgat-10-NRF24L01-2-4/32842054029.html) пробный заказ 10шт все работают отлично.
+- [RTC DS3231] (https://ru.aliexpress.com/item/in-stock-FQA40N25/32803523536.html) заказал 40шт к качеству есть притензии. Окисленные ножки(плохо паяются)
   из 30 установленных 2шт нерабочие 4шт ведут себя непонятно (есть мысли но пока выводы окончательно сделать не могу)(возможно лучше поискать другого продавца)
-- MCP1700T
-  https://ru.aliexpress.com/item/50-MCP1700T-3302E-MCP1700T-MCP1700-23/32876878190.html из 30проверенных у 3 напряжение 2.9-3.1В остальные 3.2-3.3В
+- [MCP1700T] (https://ru.aliexpress.com/item/50-MCP1700T-3302E-MCP1700T-MCP1700-23/32876878190.html) из 30 проверенных у 3 напряжение 2.9-3.1В остальные 3.2-3.3В
 
  СБОРКА КОРПУСА:
 ------------
@@ -112,17 +110,25 @@
 ------------
 
 Изначально столкнулся с проблемами загрузкой через UART прошивок, когда использовал Optiboot из среды Arduino или иных на скоростях выше 38400.
+
 В результате думаю, что дело было в следующем:
+
 По стандарту на RS232 Atmel рекомендует ошибку в скорости передачи до 2%.
 При 8МГц тактирования и скорости передачи 115200 ошибка составляет 7,8% при 57600 - 3,7%
 До приемлемого уровня ошибка доходит на скоростях от 38400 и ниже. http://www.robotroom.com/Asynchronous-Serial-Communication-2.html
+
 При добавлении optiboot плат в IDE Arduino  как бало описано у Александра, прошивка происходит на скорости 57600. 
 При этом ошибка при стабильном генераторе составит 3,7% а при тактировании от внутреннего генератора  может еще существенно уплыть как в большую так и в меньшую сторону.
+
 Скачал исходник optiboot пересобрал под 8Мгц и скорость 38400 залил и все заработало!
+
 При компиляции под 8Мгц и скорость 115200/57600 сам компилятор хоть и компилирует но предупреждает,
 что при данных значениях частоты тактовой и передачи по RS232 ошибка превышает 2%
-Здесь вылаживаю свои прошивки Optiboot.
+
+[Здесь вылаживаю свои прошивки Optiboot.](https://github.com/halny123/sportiduino/tree/master/NRFstation/Bootloader_Otiboot)
+
 Их особенности 
+
 - предназначенны для atmega328, 
 - тактирование от внутреннего генератора 8Мгц,
 - скорость COM порта 38400, 
@@ -130,19 +136,28 @@
 
 Что я делаю:
 
-копируем в {Путь где установлен Arduino}\hardware\arduino\avr\bootloaders\ 
-папку https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/bootloaders/myoptiboot 
- с файлами загрузчика Bootloader.
-    • optiboot_atmega328_8M_38K400_D4_3flash.hex
-    • optiboot_atmega328_8M_38K400_D4_5flash.hex
-    • optiboot_atmega328_8M_38K400_NoLedBlink.hex
+копируем в 
 
-Добавляем в конец файла {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
-содержимое https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/boards.txt
+{Путь где установлен Arduino}\hardware\arduino\avr\bootloaders\ 
+
+[папку с файлами загрузчика Bootloader.] (https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/bootloaders/myoptiboot)
  
-Запускаем среду Arduino
-В платах появится пункт - Електронная отметка atmega328p 32 pin TQFP
-и можно будет выбрать один из 3-х загрузчиков, и порог срабатывания схемы BOD (Системы контроля питания).
+    - optiboot_atmega328_8M_38K400_D4_3flash.hex
+    - optiboot_atmega328_8M_38K400_D4_5flash.hex
+    - optiboot_atmega328_8M_38K400_NoLedBlink.hex
+
+Добавляем в конец файла
+
+ {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
+
+[содержимое файла boards.txt] (https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/boards.txt)
+ 
+Запускаем среду Arduino.
+
+В платах появится пункт - **Електронная отметка atmega328p 32 pin TQFP**
+
+Ниже можно будет выбрать один из 3-х загрузчиков, и порог срабатывания схемы BOD (Системы контроля питания).
+
 Дальше прошиваемся по обычной схеме
 
 ------------------------------------------------

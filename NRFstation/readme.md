@@ -30,13 +30,15 @@
 Печатные платы делаю оптом (по 10шт) используя паяльную пасту и трафарет.Так выходит намного быстрее. 
 
 10 станций от начала пайки до готового изделия получаются за 6-7часов.
-![Паяльная паста](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/MECHANIC_XG-80_BGA.jpg)
 
 Паяльная паста - MECHANIC XG-80 BGA 60g. (Sn-63%, Pb-37%) ORIGINAL
+![Паяльная паста](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/MECHANIC_XG-80_BGA.jpg)
 
-![На фото трафарет новый и использованный 30раз.](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Trafaret.jpg)
+
 Трафарет далал дома на лазерном принтере (2Вт) из плотной глянцевой бумаги (то что было под рукой). 
-Одного трафарета хватило на 30 плат и можно еще пользоваться.
+Одного трафарета хватило на 30 плат и можно еще пользоваться. На фото трафарет новый и использованный 30раз.
+![На фото трафарет новый и использованный 30раз.](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Trafaret.jpg)
+
 [Файлы для изготовления трафарета в архиве](https://github.com/halny123/sportiduino/blob/master/NRFstation/PCB/TrafaretPCB_1.3.8.rar)
 
 Если живете в большом городе можно заказать (наверное) в фирме по изготовлению рекламы порезку из пластика, тогда трафарет будет вечный.
@@ -45,13 +47,17 @@
 ------------
 1. Налаживаем на п.п. трафарет и ракелем (обрезок от пластиковой карты) наносим на плату паяльную пасту.
      
-  Для удобства работы и позиционирования использую 3-ри дополнительные платы, которые плотно прижимаю к основной и креплу к столу 
+  Для удобства работы и позиционирования использую 3-ри дополнительные платы, которые плотно прижимаю к основной и креплю к столу 
   обычным двухсторонним скотчем.
     ![Позиционируем плату и трафарет](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont.jpg)
+    
      Совмещаю трафарет с платой и фиксирую края малярным скотчем.   
+     
     ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont1.jpg)
+    
      Наносим паяльную пасту.
      Отклеиваем скотч с одной стороны, убираем плату. Повторяем процесс для других плат.
+     
      ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_Mont2.jpg)
      
 
@@ -61,7 +67,7 @@
    - ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_SportIduinoNRF_v1.3.8Top.jpg)
 5. Прошиваем Optiboot bootloader.(Какие возникли проблемы и как их решил смотрим ниже).
 6. Заливаем тестовую прошивку и проверяем работу всего кроме RFID и NRF модулей.
-   [Тестовый скетч] (https://github.com/halny123/sportiduino/blob/master/NRFstation/TestStation)
+   [Тестовый скетч](https://github.com/halny123/sportiduino/blob/master/NRFstation/TestStation)
 7. Если все работает запаиваем RFID и NRF модули и тестируем их.
    RFID - модули предварительно проверяю на дальность считывания меток с помощью тестовой станции с запаянным разъемом под RFID модуль.
    ![Тестовая станция](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Plata_testRFmodul.jpg)
@@ -89,14 +95,19 @@
 Что бы быстрее было собирать станцию сделал два приспособления.
  Одно для позиционирования сверла при сверлении отверствий под светодиод.
  Другое для получение линзы для вклейки в корпус
+ 
      ![Все приспособления](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_All.jpg)
 
 В корпусе сверлю с помощью кондуктора сквозное отверстие 3мм.
+
      ![Кондуктор для корпуса](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_Box.jpg)
+     
 С внутренней стороны снимаю фаску сверлом 5мм до наружной стенки.
 Покупаю самых дешевых выводных 5мм красных светодиода.
 Делаю приспособление из 2-х фанерок 3мм. В одной отверстие 5мм в другой 4-4.5мм. Зажимаю между ними в тисках светодиод. 
+
      ![приспособление под светодиод](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Konduktor_Led.jpg)
+     
 Лобзиком спиливаю верхушку светодиода и вклеиваю ее в корпус.
 Так получается полностью разборная конструкция в которой плату можно свободно достать из корпуса.
 

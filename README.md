@@ -32,4 +32,7 @@ https://github.com/alexandervolikov/sportiduino
 [Описание процесса изготовления](https://github.com/halny123/sportiduino/tree/master/NRFstation)
 ------------
 
+[Видео работы ](https://youtu.be/SSd08Qn7M1Y)
+------------
+
 License:         GNU GPLv3

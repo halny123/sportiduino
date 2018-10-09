@@ -13,7 +13,6 @@ const byte vers = 103; //version of software
 bool rf24_online = false;
 #ifdef HW_YU
 
-
 // Структура получаемых и передаваемых данных
 struct strSendDataNRF
 { 

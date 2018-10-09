@@ -1,7 +1,6 @@
 // Доработка скетча https://github.com/alexandervolikov/sportiduino/tree/master/Base%20station/BaseStation v 1.3.7
 // Для конфигурирования станций с помощью модуля NRF24L01+ 
 // Выход из спящего режима осуществляется по прерыванию, при подаче питания на NRF24L01+, с помощью геркона
-
 // --------------- NRF24l01 
 #define HW_YU
 // --------------- NRF24l01 ---

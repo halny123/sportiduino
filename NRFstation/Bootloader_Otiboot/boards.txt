@@ -1,0 +1,65 @@
+##############################################################
+name=[SportIduino boards]
+version=1.0
+
+menu.mhz=CPU frequency, upload speed, LED
+menu.oscillator=Clock source
+menu.bod=Brown Out Detection
+
+
+32PinBoard.name=Електронная отметка atmega328p 32 pin TQFP
+
+32PinBoard.upload.tool=arduino:avrdude
+32PinBoard.upload.protocol=arduino
+32PinBoard.upload.maximum_size=32256
+32PinBoard.upload.maximum_data_size=2048
+
+32PinBoard.bootloader.tool=arduino:avrdude
+
+32PinBoard.bootloader.unlock_bits=0x3F
+32PinBoard.bootloader.lock_bits=0x0F
+
+
+32PinBoard.build.core=arduino:arduino
+32PinBoard.build.mcu=atmega328p
+
+32PinBoard.build.board=AVR_GERTSANDERS32PinBoard
+32PinBoard.build.variant=32PinBoard
+
+32PinBoard.menu.bod.4v3=4V3
+32PinBoard.menu.bod.4v3.bootloader.extended_fuses=0x04
+32PinBoard.menu.bod.2v7=2V7
+32PinBoard.menu.bod.2v7.bootloader.extended_fuses=0x05
+32PinBoard.menu.bod.1v8=1V8
+32PinBoard.menu.bod.1v8.bootloader.extended_fuses=0x06
+32PinBoard.menu.bod.off=Disabled
+32PinBoard.menu.bod.off.bootloader.extended_fuses=0x07
+
+
+
+32PinBoard.menu.mhz.8Mi-38K4-D4_3= Електронная отметка 8Mhz - my - 38K4 - D4_3 мигания 
+32PinBoard.menu.mhz.8Mi-38K4-D4_3.bootloader.low_fuses=0xE2
+32PinBoard.menu.mhz.8Mi-38K4-D4_3.bootloader.high_fuses=0xDE
+32PinBoard.menu.mhz.8Mi-38K4-D4_3.build.f_cpu=8000000L 
+32PinBoard.menu.mhz.8Mi-38K4-D4_3.upload.speed=38400
+32PinBoard.menu.mhz.8Mi-38K4-D4_3.bootloader.file=myoptiboot/optiboot_atmega328_8M_38K400_D4_3flash.hex
+
+
+
+32PinBoard.menu.mhz.8Mi-38K4-D4_5= Електронная отметка 8Mhz - my - 38K4 - D4_5 миганий
+32PinBoard.menu.mhz.8Mi-38K4-D4_5.bootloader.low_fuses=0xE2
+32PinBoard.menu.mhz.8Mi-38K4-D4_5.bootloader.high_fuses=0xDE
+32PinBoard.menu.mhz.8Mi-38K4-D4_5.build.f_cpu=8000000L 
+32PinBoard.menu.mhz.8Mi-38K4-D4_5.upload.speed=38400
+32PinBoard.menu.mhz.8Mi-38K4-D4_5.bootloader.file=myoptiboot/optiboot_atmega328_8M_38K400_D4_5flash.hex
+
+
+
+32PinBoard.menu.mhz.8Mi-38K4= Електронная отметка 8Mhz - my - 38K4 - без миганий
+32PinBoard.menu.mhz.8Mi-38K4.bootloader.low_fuses=0xE2
+32PinBoard.menu.mhz.8Mi-38K4.bootloader.high_fuses=0xDE
+32PinBoard.menu.mhz.8Mi-38K4.build.f_cpu=8000000L 
+32PinBoard.menu.mhz.8Mi-38K4.upload.speed=38400
+32PinBoard.menu.mhz.8Mi-38K4.bootloader.file=myoptiboot/optiboot_atmega328_8M_38K400_NoLedBlink.hex
+
+

@@ -81,13 +81,13 @@
  По компонентам, что использовал и выводы:
 ------------
 - [На плату паяю SMD светодиод](https://ru.aliexpress.com/item/100pcs-Ultra-Bright-3528-LED-SMD-Red-Chip-Surface-Mount-20mA-Light-Emitting-Diode-LED-1210/32765023939.html) - 100шт - 1,62$ .
-- [Процессор Atmega 328] (https://ru.aliexpress.com/item/Free-Shipping-20pcs-lot-ATMEGA328P-AU-ATMEGA328P-ATMEL-TQFP-44-100-NEW/1608634088.html) брал 40шт притензий нет все работают.
-- [RFID RC522] (https://ru.aliexpress.com/item/B25-50-SAMIORE-RFID-RC522-13-56-6/32831776989.html) брал 50шт из 40проверенных 
+- [Процессор Atmega 328](https://ru.aliexpress.com/item/Free-Shipping-20pcs-lot-ATMEGA328P-AU-ATMEGA328P-ATMEL-TQFP-44-100-NEW/1608634088.html) брал 40шт притензий нет все работают.
+- [RFID RC522](https://ru.aliexpress.com/item/B25-50-SAMIORE-RFID-RC522-13-56-6/32831776989.html) брал 50шт из 40проверенных 
   (3 модуля работают неудовлетворительно) и почти все карточки не рабочие. Брелки рабочие.
 - [NRF24l01](https://ru.aliexpress.com/item/Wavgat-10-NRF24L01-2-4/32842054029.html) пробный заказ 10шт все работают отлично.
-- [RTC DS3231] (https://ru.aliexpress.com/item/in-stock-FQA40N25/32803523536.html) заказал 40шт к качеству есть притензии. Окисленные ножки(плохо паяются)
+- [RTC DS3231](https://ru.aliexpress.com/item/in-stock-FQA40N25/32803523536.html) заказал 40шт к качеству есть притензии. Окисленные ножки(плохо паяются)
   из 30 установленных 2шт нерабочие 4шт ведут себя непонятно (есть мысли но пока выводы окончательно сделать не могу)(возможно лучше поискать другого продавца)
-- [MCP1700T] (https://ru.aliexpress.com/item/50-MCP1700T-3302E-MCP1700T-MCP1700-23/32876878190.html) из 30 проверенных у 3 напряжение 2.9-3.1В остальные 3.2-3.3В
+- [MCP1700T](https://ru.aliexpress.com/item/50-MCP1700T-3302E-MCP1700T-MCP1700-23/32876878190.html) из 30 проверенных у 3 напряжение 2.9-3.1В остальные 3.2-3.3В
 
  СБОРКА КОРПУСА:
 ------------

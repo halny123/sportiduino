@@ -135,12 +135,13 @@
 - после старта первая прошивка мигает 3 раза светодиодом на pin D4, вторая 5 миганий, третья без миганий.
 
 Что я делаю:
+------------
 
 копируем в 
 
 {Путь где установлен Arduino}\hardware\arduino\avr\bootloaders\ 
 
-[папку с файлами загрузчика Bootloader.] (https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/bootloaders/myoptiboot)
+[папку с файлами загрузчика Bootloader.](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/bootloaders/myoptiboot)
  
     - optiboot_atmega328_8M_38K400_D4_3flash.hex
     - optiboot_atmega328_8M_38K400_D4_5flash.hex
@@ -150,7 +151,7 @@
 
  {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
 
-[содержимое файла boards.txt] (https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/boards.txt)
+[содержимое файла boards.txt](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/boards.txt)
  
 Запускаем среду Arduino.
 

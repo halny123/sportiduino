@@ -4,6 +4,47 @@
 
 const byte vers = 103; //version of software
 
+//   --------------- NRF24l01 ---------------
+bool rf24_online = false;
+
+struct strSendDataNRF // Структура получаемых и передаваемых данных
+{ 
+byte sendDataNRF[15];
+};
+strSendDataNRF sendNRF;
+
+#define pageInit_0   0
+#define pageInit_1   1
+#define pageInit_2   2
+#define pageInit_3   3
+#define pagePass_0   4
+#define pagePass_1   5 
+#define pagePass_2   6
+#define pagePass_3   7
+#define pageInfo1_0  8
+#define pageInfo1_1  9
+#define pageInfo1_2  10
+#define pageInfo1_3  11
+#define pageInfo2_0  12
+#define pageInfo2_1  13
+#define pageInfo2_2  14
+#define pageInfo2_3  15
+
+const uint8_t RF24_CSN =  8; //  CS  на RF module
+const uint8_t RF24_CE  =  2; //  CE  на RF module 
+const uint8_t VCC_NRF  =  7; //  Vcc  на RF module 
+const uint8_t VCC_C    =  5; //  pc3 my
+
+// Для работы с NRF24l01 используем библиотеку от http://tmrh20.github.io/RF24/
+#include "nRF24L01.h"
+#include "RF24.h"
+RF24 radio(RF24_CE , RF24_CSN);
+
+const uint8_t nCanalNRF24l01 = 112;             // Установка канала вещания;
+byte addresses[][6] = {"1Master","2Base"};      // 
+
+// --------------- END NRF24l01 ---------------
+
 const byte LED = 4;
 const byte BUZ = 3;
 const byte RST_PIN = 9;
@@ -49,6 +90,12 @@ uint8_t serialBuffer[packetSize];
 uint8_t dataBuffer[dataSize];
 
 void setup() {
+
+//   --------------- NRF24l01 ---------------
+  pinMode(VCC_NRF, INPUT);
+  rf24_online = false;
+// --------------- END NRF24l01 ---------------
+ 
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
   }
@@ -63,6 +110,12 @@ void setup() {
 }
 
 void loop() {
+
+//   --------------- NRF24l01 ---------------
+ if (digitalRead(VCC_NRF) and !rf24_online) { setupNRF();  }
+ if (!digitalRead(VCC_NRF)) { rf24_online = false;}
+// --------------- END NRF24l01 ---------------
+ 
   static uint32_t lastReadCardTime = 0;
   
   if (Serial.available() > 0) {
@@ -327,6 +380,27 @@ void findFunc() {
  * 
  */
 void writeMasterTime() {
+//   --------------- NRF24l01 ---------------
+if(rf24_online){
+sendNRF.sendDataNRF[pageInit_0] = 0;
+sendNRF.sendDataNRF[pageInit_1] = 250;
+sendNRF.sendDataNRF[pageInit_2] = 255;
+sendNRF.sendDataNRF[pageInit_3] = vers;
+sendNRF.sendDataNRF[pagePass_0] = pass[0];
+sendNRF.sendDataNRF[pagePass_1] = pass[1];
+sendNRF.sendDataNRF[pagePass_2] = pass[2];
+sendNRF.sendDataNRF[pagePass_3] = 0;
+sendNRF.sendDataNRF[pageInfo1_0] = dataBuffer[3];
+sendNRF.sendDataNRF[pageInfo1_1] = dataBuffer[2];
+sendNRF.sendDataNRF[pageInfo1_2] = dataBuffer[4];
+sendNRF.sendDataNRF[pageInfo1_3] = 0;
+sendNRF.sendDataNRF[pageInfo2_0] = dataBuffer[5];
+sendNRF.sendDataNRF[pageInfo2_1] = dataBuffer[6];
+sendNRF.sendDataNRF[pageInfo2_2] = dataBuffer[7];
+sendNRF.sendDataNRF[pageInfo2_3] = dataBuffer[0];
+SendNRF(); 
+}
+// --------------- END NRF24l01 ---------------
   SPI.begin();      // Init SPI bus
   mfrc522.PCD_Init();   // Init MFRC522
   // Look for new cards
@@ -371,6 +445,23 @@ void writeMasterTime() {
  * 
  */
 void  writeMasterNum(){
+//   --------------- NRF24l01 ---------------
+if(rf24_online){
+sendNRF.sendDataNRF[pageInit_0] = 0;
+sendNRF.sendDataNRF[pageInit_1] = 251;
+sendNRF.sendDataNRF[pageInit_2] = 255;
+sendNRF.sendDataNRF[pageInit_3] = vers;
+sendNRF.sendDataNRF[pagePass_0] = pass[0];
+sendNRF.sendDataNRF[pagePass_1] = pass[1];
+sendNRF.sendDataNRF[pagePass_2] = pass[2];
+sendNRF.sendDataNRF[pagePass_3] = 0;
+sendNRF.sendDataNRF[pageInfo1_0] = dataBuffer[2];
+sendNRF.sendDataNRF[pageInfo1_1] = 0;
+sendNRF.sendDataNRF[pageInfo1_2] = 0;
+sendNRF.sendDataNRF[pageInfo1_3] = 0;
+SendNRF(); 
+}
+// --------------- END NRF24l01 ---------------
   SPI.begin();          // Init SPI bus
   mfrc522.PCD_Init();   // Init MFRC522
   // Look for new cards
@@ -410,6 +501,23 @@ void  writeMasterNum(){
  * 
  */
 void writeMasterPass() {
+//   --------------- NRF24l01 ---------------
+if(rf24_online){
+sendNRF.sendDataNRF[pageInit_0] = 0;
+sendNRF.sendDataNRF[pageInit_1] = 254;
+sendNRF.sendDataNRF[pageInit_2] = 255;
+sendNRF.sendDataNRF[pageInit_3] = vers;
+sendNRF.sendDataNRF[pagePass_0] = dataBuffer[5];
+sendNRF.sendDataNRF[pagePass_1] = dataBuffer[6];
+sendNRF.sendDataNRF[pagePass_2] = dataBuffer[7];
+sendNRF.sendDataNRF[pagePass_3] = 0;
+sendNRF.sendDataNRF[pageInfo1_0] = dataBuffer[2];
+sendNRF.sendDataNRF[pageInfo1_1] = dataBuffer[3];;
+sendNRF.sendDataNRF[pageInfo1_2] = dataBuffer[4];;
+sendNRF.sendDataNRF[pageInfo1_3] = stantionConfig;
+SendNRF(); 
+}
+// --------------- END NRF24l01 ---------------  
   SPI.begin();      // Init SPI bus
   mfrc522.PCD_Init();   // Init MFRC522
   // Look for new cards
@@ -789,6 +897,20 @@ void readRawCard() {
  * 
  */
 void writeMasterSleep() {
+//   --------------- NRF24l01 ---------------
+if(rf24_online){
+sendNRF.sendDataNRF[pageInit_0] = 0;
+sendNRF.sendDataNRF[pageInit_1] = 252;
+sendNRF.sendDataNRF[pageInit_2] = 255;
+sendNRF.sendDataNRF[pageInit_3] = vers;
+sendNRF.sendDataNRF[pagePass_0] = pass[0];
+sendNRF.sendDataNRF[pagePass_1] = pass[1];
+sendNRF.sendDataNRF[pagePass_2] = pass[2];
+sendNRF.sendDataNRF[pagePass_3] = 0;
+SendNRF(); 
+}
+// --------------- END NRF24l01 ---------------  
+
   SPI.begin();      // Init SPI bus
   mfrc522.PCD_Init();   // Init MFRC522
   // Look for new cards
@@ -861,3 +983,48 @@ void clearBuffer() {
   }
 }
 
+//   --------------- NRF24l01 ---------------
+
+void setupNRF(){
+ beep(50, 2); delay(200); beep(50, 1); delay(300); beep(50, 3); 
+ rf24_online = true;
+
+    SPI.begin();
+    delay(500);
+    radio.begin();                          // Setup and configure rf radio
+
+//    radio.enableDynamicPayloads();          // Enable dynamic payloads
+//    radio.enableAckPayload();               // Allow optional ack payloads
+//    radio.setPayloadSize(1);                // Размер пакета автоответа, в байтах
+    radio.setChannel(nCanalNRF24l01);       // Set the channel
+    radio.setRetries(5,15);                 // Optionally, increase the delay between retries. Want the number of auto-retries as high as possible (15)
+    radio.setDataRate(RF24_1MBPS);          // Raise the data rate to reduce transmission distance and increase lossiness
+    radio.setPALevel(RF24_PA_MIN);          // Set PA LOW for this demonstration. We want the radio to be as lossy as possible for this example.
+    radio.setAutoAck(1);                    // Режим подтверждения приёма, 1 вкл 0 выкл
+    radio.setCRCLength(RF24_CRC_16);        // Set CRC length to 16-bit to ensure quality of data
+    radio.openWritingPipe(addresses[0]);   // Открываем канал для передачи данных
+    radio.openReadingPipe(1,addresses[1]); // Открываем канал для приема данных
+//   radio.flush_rx();                       // Чистим буфер приема и передачи
+//   radio.flush_tx();  
+    radio.startListening();                 // Слушаем эфиир
+    SPI.end();
+}
+
+
+
+// Отправляем данные
+boolean SendNRF() {
+SPI.begin();      // Init SPI bus
+ radio.stopListening();                                    // Перестаем слушать эфир для начала передачи
+  if (!radio.write( &sendNRF, sizeof(sendNRF) ))
+     {
+       beep(150, 3); return false;//Serial.println(F("Sending Data - ERROR"));  beep(150, 3);
+     } 
+      else {
+       beep(50, 1); return true;//beep(30, 1);  //Serial.println(F("Sending Data - OK"));
+     }
+ radio.startListening();                                    // Переходим в режим прослушки эфира
+SPI.end();
+}
+
+// --------------- END NRF24l01 ---------------

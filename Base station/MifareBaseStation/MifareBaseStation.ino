@@ -1,4 +1,34 @@
+// Доработка скетча https://github.com/alexandervolikov/sportiduino/tree/master/Base%20station/BaseStation v 1.4.0
+// Для конфигурирования станций с помощью модуля NRF24L01+ 
+// Выход из спящего режима осуществляется по прерыванию, при подаче питания на NRF24L01+, с помощью геркона.
+// После чего станция по обычной процедуре перегружается и если питание на радиомодуле еще присутствует то входит в режим програмировния через радиомодуль
+// По выходу из режима програмировения станция усапляется режим SLEEP . Если после перегрузки питание на радиомодуле отсутствует станция остается в активном  режиме 
+//
+// ---------------   NRF24l01 ---------------
+#include <avr/interrupt.h>   
 
+bool rf24_online = false;    // Состояние модуля NRF24l01 (нет питания)
+const uint8_t RF24_CSN = 8;  // CS  на NRF24 module
+const uint8_t RF24_CE  = 2;  // CE  на NRF24 module 
+const uint8_t VCC_NRF  = 7;  // Vcc на NRF24 module 
+
+// Для работы с NRF24l01 используем библиотеку от http://tmrh20.github.io/RF24/
+#include "nRF24L01.h"
+#include "RF24.h"
+RF24 radio(RF24_CE , RF24_CSN);
+
+const uint8_t nCanalNRF24l01 = 112;             // Установка канала вещания;
+byte addresses[][6] = {"1Master","2Base"};      // 
+ 
+// Структура получаемых и передаваемых данных
+struct strGetDataNRF
+{ 
+byte ReadDataNRF[15];
+};
+strGetDataNRF readNRF;
+
+
+// --------------- END  NRF24l01 ---------------
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 #include <Wire.h>
@@ -84,7 +114,17 @@ struct ts t; //time
 
 
 void setup () {
+// ---------------   NRF24l01 ---------------
+beep(50, 1); delay(150);beep(50, 2); // - Сигнализируем о перегрузке станции
+Serial.begin(9600);
+pinMode(VCC_NRF, INPUT);
 
+// Разрешаем прерывания по порту D на PD7 для отслеживания подачи питания на NRF24
+cli();
+PCICR |= 0b00000100;     // Enables Ports D Pin Change Interrupts
+PCMSK2 |= 0b10000000;    // turn on pins   PD7,   PCINT23
+sei();
+// --------------- END  NRF24l01 ---------------
   for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
   }
@@ -162,6 +202,11 @@ void loop ()
   //enable watch-dog for 1 s
   wdt_enable(WDTO_1S);
 
+// ---------------   NRF24l01 ---------------
+Serial.print( "loop " ); Serial.println ( digitalRead(VCC_NRF) ); 
+rf24(); // Проверяем есть ли на модуле питание если да то входим в режим конфигурирования через радиомодуль
+// --------------- END  NRF24l01 ---------------
+
   if (work){
     loopCount ++;
     if (loopCount > maxCount) {
@@ -227,6 +272,10 @@ void sleep(boolean light) {
     pinMode(i, OUTPUT);
     digitalWrite (i, LOW);  //
   }
+  
+// ---------------   NRF24l01 ---------------
+   pinMode(VCC_NRF,INPUT); // Оставляем пин на вход для срабатывания прерывания от геркона
+// --------------- END  NRF24l01 ---------------
 
   // disable ADC
   ADCSRA = 0;
@@ -276,7 +325,11 @@ void sleep8s() {
     pinMode(i, OUTPUT);
     digitalWrite (i, LOW);  //
   }
- 
+  
+// ---------------   NRF24l01 ---------------
+   pinMode(VCC_NRF,INPUT); // Оставляем пин на вход для срабатывания прерывания от геркона
+// --------------- END  NRF24l01 ---------------
+
   // disable ADC
   ADCSRA = 0;
   MCUSR = 0;
@@ -758,11 +811,13 @@ void timeChip() {
   t.sec = dump[14];
 
   uint8_t dataDump[4] ={0, 0, 0,0};
-  
-  if(!ntagWrite(dataDump,4)){
-    return;
-  }
-  
+
+// ---------------   NRF24l01 ---------------   Если задействован радиомодуль не стираем чип
+if (!digitalRead(VCC_NRF)) { 
+   if (!ntagWrite(dataDump,4)){ return; }
+     }
+// --------------- END  NRF24l01 ---------------
+
   digitalWrite(VCC_C,HIGH);
   delay(1);
   DS3231_set(t); //correct time
@@ -783,9 +838,12 @@ void stantionChip(){
   uint8_t newnum = dump[8];
   uint8_t dataDump[4] ={0, 0, 0, 0};
   
-  if(!ntagWrite(dataDump,4)){
-    return;
-  }
+// ---------------   NRF24l01 ---------------   Если задействован радиомодуль не стираем чип
+if (!digitalRead(VCC_NRF)) { 
+   if (!ntagWrite(dataDump,4)){ return; }
+     }
+// --------------- END  NRF24l01 ---------------
+
     
   if (newnum!=0){
     if (stantion != newnum){
@@ -809,10 +867,13 @@ void stantionChip(){
 void sleepChip(){
   
   uint8_t dataDump[4] ={0, 0, 0, 0};
-  
-  if(!ntagWrite(dataDump,4)){
-    return;
-  }
+
+// ---------------   NRF24l01 ---------------   Если задействован радиомодуль не стираем чип
+if (!digitalRead(VCC_NRF)) { 
+   if (!ntagWrite(dataDump,4)){ return; }
+     }
+// --------------- END  NRF24l01 ---------------
+
   for (uint8_t i = 0;i<3;i++){
     pass[i]=0;
     eepromwrite((eepromPass+i*3),0);
@@ -908,9 +969,11 @@ void passChip(){
 
   uint8_t dataDump[4] ={0, 0, 0, 0};
   
-  if(!ntagWrite(dataDump,4)){
-    return;
-  }
+// ---------------   NRF24l01 ---------------   Если задействован радиомодуль не стираем чип
+if (!digitalRead(VCC_NRF)) { 
+   if (!ntagWrite(dataDump,4)){ return; }
+     }
+// --------------- END  NRF24l01 ---------------
   
   beep(500,2);
   resetFunc(); //reboot
@@ -1049,3 +1112,121 @@ void checkChip(){
   
 }
 
+
+// ---------------   NRF24l01 ---------------
+
+/*
+void rf24_dumpChip(){
+  delay(10);
+  uint8_t dataEeprom[4];
+  uint16_t eepromAdr = 0;
+ radio.stopListening();                                        // First, stop listening so we can talk
+ radio.setChannel( nCanalNRF24l01 );                       // !!!!Проверить влияет ли на стабильность передачи!!!!!!!!!!!!!! 
+ radio.flush_tx();                          // чистим буфер отправки
+  for (uint8_t page = 5; page<50;page++){
+  wdt_reset();
+    for (uint8_t m = 0; m<4;m++){
+      dataEeprom[m]=EEPROM.read(eepromAdr);
+      eepromAdr++;
+    }
+ 
+ 
+   if (!radio.write( &dataEeprom, sizeof(dataEeprom) ))
+     {
+      beep(150, 3);  //Serial.println(F("Sending Data - ERROR"));
+     } 
+      else {
+       //beep(30, 1);  //Serial.println(F("Sending Data - OK"));
+     }
+      delay(10);
+      radio.flush_tx();                          // чистим буфер отправки
+   }
+  radio.startListening();                                       // Now, resume listening so we catch the next packets.
+  beep(500,6);
+ radio.startListening();                                    // Переходим в режим прослушки эфира
+ radio.flush_rx(); 
+  return;
+}
+*/
+
+void rf24(){
+ while (digitalRead(VCC_NRF)){                                    // Крутимся в цикле пока не снимем питание с радиомодуля после снятия питания усыпляем станцию
+  if (!rf24_online) { init_rf24();  }                             // Инициализируем радиомодуль  
+  wdt_reset(); 
+ 
+  if ( ReadNRF()){
+   for (uint8_t h=0;h<16;h++){ dump[h]=readNRF.ReadDataNRF[h]; }
+   
+   switch(dump[1]){
+    case timeMaster:
+       timeChip();
+       break;
+    case numberMaster:
+       stantionChip();
+       break;
+    case sleepMaster:
+       sleepChip();
+       break;
+    case dumpMaster:
+       break;
+    case passMaster:
+       passChip();
+       break;
+   }
+  }
+ }
+rf24_online = false;
+sleepChip();
+}
+
+// Читаем данные из радиомодуля
+boolean ReadNRF() {
+  wdt_reset(); 
+  if( radio.available()){
+    while (radio.available()) {                                   // While there is data ready
+      radio.read( &readNRF,sizeof(readNRF) );             // Get the payload
+           }
+    beep(100,readNRF.ReadDataNRF[1]-249);
+    Serial.print( "Read code - " );   
+    for (uint8_t h=0;h<16;h++){ Serial.print(  readNRF.ReadDataNRF[h]); }
+    Serial.println ( ); beep(30, 1);
+    return true;
+ }
+ return false;
+}
+
+ 
+// При возникновении прерывания по входу на PD7 переводим станцию из Sleep режима и перегружаемся
+ISR(PCINT2_vect)     // Обработчик прерываний от   Pin Change Port D, PCINT16 - PCINT23 
+{
+ deepsleep = false;
+ eepromwrite(eepromAdrSleep, 0);
+ voltage();
+ resetFunc();
+}
+
+// Инициализируем радиомодуль
+void init_rf24(){
+    beep(50, 2); delay(200);wdt_reset(); beep(50, 1); delay(300);wdt_reset(); beep(50, 3); 
+    rf24_online = true;
+ 
+    SPI.begin();
+    delay(500);wdt_reset();
+    radio.begin();                          // Setup and configure rf radio
+
+//    radio.enableDynamicPayloads();          // Enable dynamic payloads
+//    radio.enableAckPayload();               // Allow optional ack payloads
+//    radio.setPayloadSize(1);                // Размер пакета автоответа, в байтах
+    radio.setChannel(nCanalNRF24l01);       // Set the channel
+    radio.setRetries(5,15);                 // Optionally, increase the delay between retries. Want the number of auto-retries as high as possible (15)
+    radio.setDataRate(RF24_1MBPS);          // Raise the data rate to reduce transmission distance and increase lossiness
+    radio.setPALevel(RF24_PA_MIN);          // Set PA LOW for this demonstration. We want the radio to be as lossy as possible for this example.
+    radio.setAutoAck(1);                    // Режим подтверждения приёма, 1 вкл 0 выкл
+    radio.setCRCLength(RF24_CRC_16);        // Set CRC length to 16-bit to ensure quality of data
+    radio.openWritingPipe(addresses[1]);    // Открываем канал для передачи данных
+    radio.openReadingPipe(1,addresses[0]);  // Открываем канал для приема данных
+    radio.startListening();                 // Слушаем эфиир
+    SPI.end();
+}
+
+// --------------- END  NRF24l01 ---------------

@@ -10,7 +10,7 @@
 Выгодней размещать заказ с 2-мя платами. 
 
 ------------------------------------------------
-***{Схема](https://github.com/halny123/sportiduino/blob/master/NRFstation/Scheme/Schematic_SportIduino-NRF24l01_Sportiduino-1.3.8_20181008122222.pdf)***
+***[Схема](https://github.com/halny123/sportiduino/blob/master/NRFstation/Scheme/Schematic_SportIduino-NRF24l01_Sportiduino-1.3.8_20181008122222.pdf)***
 
 Пояснения к схеме:
 

@@ -141,11 +141,9 @@ http://www.robotroom.com/Asynchronous-Serial-Communication-2.html
 Что я делаю:
 ------------
 
-копируем в 
+создаем папку в {Путь где установлен Arduino}\hardware\arduino\avr\bootloaders\myoptiboot 
 
-{Путь где установлен Arduino}\hardware\arduino\avr\bootloaders\ 
-
-[папку с файлами загрузчика Bootloader.](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/bootloaders/myoptiboot)
+[копируем туда файлы загрузчика Bootloader.](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Optiboot/bootloaders/myoptiboot)
  
     - optiboot_atmega328_8M_38K400_D4_3flash.hex
     - optiboot_atmega328_8M_38K400_D4_5flash.hex
@@ -155,7 +153,7 @@ http://www.robotroom.com/Asynchronous-Serial-Communication-2.html
 
  {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
 
-[содержимое файла boards.txt](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Otiboot/boards.txt)
+[содержимое файла boards.txt](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Optiboot/boards.txt)
  
 Запускаем среду Arduino.
 

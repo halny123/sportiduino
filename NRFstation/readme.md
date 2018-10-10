@@ -69,7 +69,7 @@
    - ![](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB_SportIduinoNRF_v1.3.8Top.jpg)
 5. Прошиваем Optiboot bootloader.(Какие возникли проблемы и как их решил смотрим ниже).
 6. Заливаем тестовую прошивку и проверяем работу всего кроме RFID и NRF модулей.
-   [Тестовый скетч](https://github.com/halny123/sportiduino/blob/master/NRFstation/TestStation)
+   [Тестовый скетч](https://github.com/halny123/sportiduino/blob/master/NRFstation/TestStationOk.ino)
 7. Если все работает запаиваем RFID и NRF модули и тестируем их.
    RFID - модули предварительно проверяю на дальность считывания меток с помощью тестовой станции с запаянным разъемом под RFID модуль.
    ![Тестовая станция](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/Plata_testRFmodul.jpg)

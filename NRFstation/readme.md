@@ -155,6 +155,7 @@ http://www.robotroom.com/Asynchronous-Serial-Communication-2.html
 Добавляем в конец файла   {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
 
 [содержимое файла boards.txt](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Optiboot/boards.txt)
+                              
  
 Запускаем среду Arduino.
 

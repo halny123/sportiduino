@@ -149,9 +149,10 @@ http://www.robotroom.com/Asynchronous-Serial-Communication-2.html
     - optiboot_atmega328_8M_38K400_D4_5flash.hex
     - optiboot_atmega328_8M_38K400_NoLedBlink.hex
 
-Добавляем в конец файла
+Добавляем в папку {Путь где установлен Arduino}\hardware\arduino\avr\variants\
+[содержимое папки variants](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Optiboot/variants/)
 
- {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
+Добавляем в конец файла   {Путь где установлен Arduino}\hardware\arduino\avr\boards.txt 
 
 [содержимое файла boards.txt](https://github.com/halny123/sportiduino/blob/master/NRFstation/Bootloader_Optiboot/boards.txt)
  

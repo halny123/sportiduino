@@ -10,7 +10,7 @@ const byte vers = 103; //version of software
 
 
 // --------------- NRF24l01
-bool my_rf24_online = false;
+bool rf24_online = false;
 #ifdef HW_YU
 
 // Структура получаемых и передаваемых данных

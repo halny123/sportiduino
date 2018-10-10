@@ -10,15 +10,15 @@ const byte vers = 103; //version of software
 
 
 // --------------- NRF24l01
-bool rf24_online = false;
+bool my_rf24_online = false;
 #ifdef HW_YU
 
 // Структура получаемых и передаваемых данных
-struct strSendDataNRF
+struct strSendDataNRF_my
 { 
 byte sendDataNRF[15];
 };
-strSendDataNRF sendNRF;
+strSendDataNRF_my sendNRF;
 
 
 
@@ -118,7 +118,7 @@ uint8_t dataBuffer[dataSize];
 void setup() {
 // --------------- NRF24l01 
  pinMode(VCC_NRF, INPUT);
- rf24_online = false;
+ my_rf24_online = false;
 // --------------- NRF24l01 ---
   
   for (byte i = 0; i < 6; i++) {
@@ -137,8 +137,8 @@ void setup() {
 void loop() {
   
 // --------------- NRF24l01 
- if (digitalRead(VCC_NRF) and !rf24_online) { setupNRF();  }
- if (!digitalRead(VCC_NRF)) { rf24_online = false;}
+ if (digitalRead(VCC_NRF) and !my_rf24_online) { setupNRF();  }
+ if (!digitalRead(VCC_NRF)) { my_rf24_online = false;}
 // --------------- NRF24l01 ---
   
   static uint32_t lastReadCardTime = 0;
@@ -407,7 +407,7 @@ void findFunc() {
 void writeMasterTime() {
 
 // --------------- NRF24l01
-if(rf24_online){
+if(my_rf24_online){
   
 sendNRF.sendDataNRF[pageInit_0] = 0;
 sendNRF.sendDataNRF[pageInit_1] = 250;
@@ -477,7 +477,7 @@ SendNRF();
 void  writeMasterNum(){
 
 // --------------- NRF24l01
-if(rf24_online){
+if(my_rf24_online){
   
 sendNRF.sendDataNRF[pageInit_0] = 0;
 sendNRF.sendDataNRF[pageInit_1] = 251;
@@ -538,7 +538,7 @@ SendNRF();
 void writeMasterPass() {
 
 // --------------- NRF24l01
-if(rf24_online){
+if(my_rf24_online){
   
 sendNRF.sendDataNRF[pageInit_0] = 0;
 sendNRF.sendDataNRF[pageInit_1] = 254;
@@ -940,7 +940,7 @@ void writeMasterSleep() {
 
   
 // --------------- NRF24l01
-if(rf24_online){
+if(my_rf24_online){
   
 sendNRF.sendDataNRF[pageInit_0] = 0;
 sendNRF.sendDataNRF[pageInit_1] = 252;
@@ -1013,7 +1013,7 @@ void getVersion() {
 
   clearBuffer();
 
-  addData(vers, function);
+  addData(versi, function);
   sendData(function, dataCount);
   packetCount = 0;
 }
@@ -1035,7 +1035,7 @@ void clearBuffer() {
 
 void setupNRF(){
  beep(50, 2); delay(200); beep(50, 1); delay(300); beep(50, 3); 
- rf24_online = true;
+ my_rf24_online = true;
 
     SPI.begin();
     delay(500);

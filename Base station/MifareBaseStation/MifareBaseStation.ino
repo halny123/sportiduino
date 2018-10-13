@@ -3,7 +3,7 @@
 // Выход из спящего режима осуществляется по прерыванию, при подаче питания на NRF24L01+, с помощью геркона.
 // После чего станция по обычной процедуре перегружается и если питание на радиомодуле еще присутствует то входит в режим програмировния через радиомодуль
 // По выходу из режима програмировения станция усапляется режим SLEEP . Если после перегрузки питание на радиомодуле отсутствует станция остается в активном  режиме 
-//
+// 
 // ---------------   NRF24l01 ---------------
 #include <avr/interrupt.h>   
 
@@ -115,9 +115,9 @@ struct ts t; //time
 
 void setup () {
 // ---------------   NRF24l01 ---------------
-Serial.begin(9600);
+//Serial.begin(9600);
 beep(50, 2); // - Сигнализируем о перегрузке станции
-Serial.println( "Перегрузились " ); 
+//Serial.println( "Перегрузились " ); 
 
 pinMode(VCC_NRF, INPUT);
 
@@ -205,7 +205,7 @@ void loop ()
   wdt_enable(WDTO_1S);
 
 // ---------------   NRF24l01 ---------------
-Serial.print( "loop " ); Serial.println ( digitalRead(VCC_NRF) ); 
+//Serial.print( "loop " ); Serial.println ( digitalRead(VCC_NRF) ); 
 rf24(); // Проверяем есть ли на модуле питание если да то входим в режим конфигурирования через радиомодуль
 // --------------- END  NRF24l01 ---------------
 
@@ -1153,7 +1153,7 @@ void rf24_dumpChip(){
 
 void rf24(){
 if(digitalRead(VCC_NRF)) { 
-   Serial.println( "Ждем команд от радиомодуля " ); 
+//   Serial.println( "Ждем команд от радиомодуля " ); 
  while (digitalRead(VCC_NRF)){                                    // Крутимся в цикле пока не снимем питание с радиомодуля после снятия питания усыпляем станцию
   if (!rf24_online) { init_rf24();  }                             // Инициализируем радиомодуль  
   wdt_reset(); 
@@ -1180,7 +1180,7 @@ if(digitalRead(VCC_NRF)) {
   }
  }
  // Засыпаем
- Serial.println( "Засыпаем " );  
+// Serial.println( "Засыпаем " );  
  deepsleep = true;
  eepromwrite (eepromAdrSleep, 255); //write sleep mode to EEPROM in case of failures
  cleanEeprom();
@@ -1196,9 +1196,10 @@ boolean ReadNRF() {
       radio.read( &readNRF,sizeof(readNRF) );             // Get the payload
            }
 //    beep(100,readNRF.ReadDataNRF[1]-249);
-    Serial.print( "Read code - " );   
-    for (uint8_t h=0;h<16;h++){ Serial.print(  readNRF.ReadDataNRF[h]); }
-    Serial.println ( ); beep(30, 1);
+//    Serial.print( "Read code - " );   
+//    for (uint8_t h=0;h<16;h++){ Serial.print(  readNRF.ReadDataNRF[h]); }
+//    Serial.println ( );
+    beep(30, 1);
     return true;
  }
  return false;

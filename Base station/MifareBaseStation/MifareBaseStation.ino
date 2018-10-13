@@ -115,8 +115,10 @@ struct ts t; //time
 
 void setup () {
 // ---------------   NRF24l01 ---------------
-beep(50, 1); delay(150);beep(50, 2); // - Сигнализируем о перегрузке станции
 Serial.begin(9600);
+beep(50, 2); // - Сигнализируем о перегрузке станции
+Serial.println( "Перегрузились " ); 
+
 pinMode(VCC_NRF, INPUT);
 
 // Разрешаем прерывания по порту D на PD7 для отслеживания подачи питания на NRF24
@@ -1150,6 +1152,8 @@ void rf24_dumpChip(){
 */
 
 void rf24(){
+if(digitalRead(VCC_NRF)) { 
+   Serial.println( "Ждем команд от радиомодуля " ); 
  while (digitalRead(VCC_NRF)){                                    // Крутимся в цикле пока не снимем питание с радиомодуля после снятия питания усыпляем станцию
   if (!rf24_online) { init_rf24();  }                             // Инициализируем радиомодуль  
   wdt_reset(); 
@@ -1175,10 +1179,15 @@ void rf24(){
    }
   }
  }
-rf24_online = false;
-sleepChip();
+ // Засыпаем
+ Serial.println( "Засыпаем " );  
+ deepsleep = true;
+ eepromwrite (eepromAdrSleep, 255); //write sleep mode to EEPROM in case of failures
+ cleanEeprom();
+ rf24_online = false;
 }
-
+ rf24_online = false;
+}
 // Читаем данные из радиомодуля
 boolean ReadNRF() {
   wdt_reset(); 
@@ -1186,7 +1195,7 @@ boolean ReadNRF() {
     while (radio.available()) {                                   // While there is data ready
       radio.read( &readNRF,sizeof(readNRF) );             // Get the payload
            }
-    beep(100,readNRF.ReadDataNRF[1]-249);
+//    beep(100,readNRF.ReadDataNRF[1]-249);
     Serial.print( "Read code - " );   
     for (uint8_t h=0;h<16;h++){ Serial.print(  readNRF.ReadDataNRF[h]); }
     Serial.println ( ); beep(30, 1);
@@ -1199,10 +1208,11 @@ boolean ReadNRF() {
 // При возникновении прерывания по входу на PD7 переводим станцию из Sleep режима и перегружаемся
 ISR(PCINT2_vect)     // Обработчик прерываний от   Pin Change Port D, PCINT16 - PCINT23 
 {
- deepsleep = false;
- eepromwrite(eepromAdrSleep, 0);
- voltage();
- resetFunc();
+ if (!rf24_online){
+  deepsleep = false;
+  eepromwrite(eepromAdrSleep, 0);  // выходим из Sleep режима
+  resetFunc();
+ }
 }
 
 // Инициализируем радиомодуль

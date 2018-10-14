@@ -1153,6 +1153,11 @@ void rf24_dumpChip(){
 
 void rf24(){
 if(digitalRead(VCC_NRF)) { 
+// Запрещаем прерывания по порту D  
+ cli();
+ PCICR |= 0b00000000;     // Enables Ports D Pin Change Interrupts
+ sei();
+
 //   Serial.println( "Ждем команд от радиомодуля " ); 
  while (digitalRead(VCC_NRF)){                                    // Крутимся в цикле пока не снимем питание с радиомодуля после снятия питания усыпляем станцию
   if (!rf24_online) { init_rf24();  }                             // Инициализируем радиомодуль  
@@ -1179,11 +1184,16 @@ if(digitalRead(VCC_NRF)) {
    }
   }
  }
- // Засыпаем
+// Засыпаем
 // Serial.println( "Засыпаем " );  
  deepsleep = true;
  eepromwrite (eepromAdrSleep, 255); //write sleep mode to EEPROM in case of failures
- cleanEeprom();
+ cleanEeprom(); // Подумать нжно ли ???
+// Разрешаем прерывания по порту D на PD7 для отслеживания подачи питания на NRF24
+ cli();
+ PCICR |= 0b00000100;     // Enables Ports D Pin Change Interrupts
+ PCMSK2 |= 0b10000000;    // turn on pins   PD7,   PCINT23
+ sei();
  rf24_online = false;
 }
  rf24_online = false;

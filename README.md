@@ -35,7 +35,7 @@ https://github.com/alexandervolikov/sportiduino
  - Выведены с 3-х свободных пинов МК дорожки с контактными площадками, если понадобится в дальнейшем можно их использовать.
 
 [Описание процесса изготовления](https://github.com/halny123/sportiduino/tree/master/NRFstation)
-------------
+-------------
 
 [Видео работы ](https://youtu.be/SSd08Qn7M1Y)
 ------------

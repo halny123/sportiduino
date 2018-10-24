@@ -9,6 +9,7 @@ https://github.com/alexandervolikov/sportiduino
 [Все, что касается схемы, плат, изготовления находится здесь](https://github.com/halny123/sportiduino/tree/master/NRFstation)
 
 Прошивка только для Mifare чипов т.к. в наличии только они пока.
+
 [Базовая станция](https://github.com/halny123/sportiduino/tree/master/Base%20station/MifareBaseStation)
 
 [Мастер станция](https://github.com/halny123/sportiduino/tree/master/Master%20station/MifareMasterStation)

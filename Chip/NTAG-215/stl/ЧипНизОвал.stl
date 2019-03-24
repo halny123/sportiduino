@@ -1438,21 +1438,21 @@ solid
       outer loop
          vertex 2.850000e+001 7.175736e+000 1.824264e+000
          vertex 2.850000e+001 7.600000e+000 2.000000e+000
+         vertex 8.500000e+000 7.600000e+000 2.000000e+000
+      endloop
+   endfacet
+   facet normal 0.000000e+000 -9.238795e-001 3.826835e-001
+      outer loop
          vertex 8.500000e+000 7.175736e+000 1.824264e+000
+         vertex 2.850000e+001 7.000000e+000 1.400000e+000
+         vertex 2.850000e+001 7.175736e+000 1.824264e+000
       endloop
    endfacet
    facet normal 0.000000e+000 -3.826836e-001 9.238795e-001
       outer loop
          vertex 8.500000e+000 7.600000e+000 2.000000e+000
          vertex 8.500000e+000 7.175736e+000 1.824264e+000
-         vertex 2.850000e+001 7.600000e+000 2.000000e+000
-      endloop
-   endfacet
-   facet normal 0.000000e+000 -9.238795e-001 3.826835e-001
-      outer loop
-         vertex 2.850000e+001 7.000000e+000 1.400000e+000
          vertex 2.850000e+001 7.175736e+000 1.824264e+000
-         vertex 8.500000e+000 7.175736e+000 1.824264e+000
       endloop
    endfacet
    facet normal 0.000000e+000 9.238799e-001 3.826826e-001

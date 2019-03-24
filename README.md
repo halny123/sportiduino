@@ -47,4 +47,6 @@ https://github.com/alexandervolikov/sportiduino
 [Видео работы ](https://youtu.be/SSd08Qn7M1Y)
 ------------
 
+Добавил 3D модели для печати чипов под метки 25мм NTAG215 - папка .\chip
+
 License:         GNU GPLv3

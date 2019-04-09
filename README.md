@@ -52,7 +52,7 @@ https://github.com/alexandervolikov/sportiduino
 Добавил 3D модели для печати чипов под метки 25мм NTAG215 и фото того что получилось.
 Чип состоит из двух половинок в "верхнюю крышку" вклеиваю NTAG метку 25мм, предварительно приклеив ее на пластик 0,4мм толщиной. Далее склеиваю две половинки чипа. Добавляю ремешок и чип готов.
 
-![Перешел на метки NTAG215](https://github.com/halny123/sportiduino/tree/master/Chip/NTAG-215/Image/Chip.png)
+![Фото чипов на NTAG215](https://github.com/halny123/sportiduino/tree/master/Chip/NTAG-215/Image/Chip.png)
 
 
 License:         GNU GPLv3

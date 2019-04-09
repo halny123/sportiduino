@@ -54,4 +54,7 @@ https://github.com/alexandervolikov/sportiduino
 
 ![Перешел на метки NTAG215](https://github.com/halny123/sportiduino/tree/master/Chip/NTAG-215/Image/Чип_фото.jpg)
 
+![Платы в сборе](https://github.com/halny123/sportiduino/blob/master/NRFstation/Images/PCB.jpg)
+
+
 License:         GNU GPLv3

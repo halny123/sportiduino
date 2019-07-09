@@ -1,8 +1,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
 #include <EEPROM.h>
-
-const byte vers = 103; //version of software
+ byte vers = 103; //version of software
 
 //   --------------- NRF24l01 --------------- dim
 bool rf24_online = false;

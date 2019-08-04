@@ -39,7 +39,7 @@ strGetDataNRF readNRF;
 
 //Константы и перменные
 
-const uint8_t vers = 104; //version of software
+const uint8_t vers = 704; //version of software
 const uint16_t eepromMaxChip = 4000; //16Kb, default in ds3231 - 4Kb
 
 const uint8_t LED = 4; // led diod pin

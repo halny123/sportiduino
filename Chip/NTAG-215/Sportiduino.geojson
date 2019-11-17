@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [47.822852, 31.182308]
+      },
+      "properties": {
+        "marker-symbol": "Sportiduino",
+        "Контакты": "Виталий - burenko@part-iskra.org",
+        "Станций": "Базовых - 40шт, Мастер - 2шт",
+        "Чипов": "NTag215 - 190шт"
+      }
+    },
+
+
+  ]
+}

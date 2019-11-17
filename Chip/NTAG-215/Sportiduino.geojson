@@ -2,7 +2,7 @@
     "features": [
         
       { "type": "Feature",
-        "geometry": {"type": "Point", "coordinates": [47.825729, 31.179919]},
+        "geometry": {"type": "Point", "coordinates": [47.825729N, 31.179919E]},
         "properties": {
             "marker-symbol": "",
         "Контакты": "Виталий - burenko@part-iskra.org",

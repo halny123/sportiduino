@@ -4,7 +4,7 @@
       { "type": "Feature",
         "geometry": {"type": "Point", "coordinates": [31.179919, 47.825729]},
         "properties": {
-            "marker-symbol": "campsite",
+            "marker-symbol": "triangle-stroked",
         "Контакты": "Виталий - burenko@part-iskra.org",
         "Станций": "Базовых - 40шт, Мастер - 2шт",
         "Чипов": "NTag215 - 190шт"
@@ -14,9 +14,9 @@
         "geometry": {"type": "Point", "coordinates": [23.718021, 52.101239]},
         "properties": {
             "marker-symbol": "triangle-stroked",
-        "Контакты": "Виталий - burenko@part-iskra.org",
-        "Станций": "Базовых - 40шт, Мастер - 2шт",
-        "Чипов": "NTag215 - 190шт"
+        "Контакты": "Максим",
+        "Станций": "Базовых - шт, Мастер - шт",
+        "Чипов": "NTag215 - шт"
         }
        }
         
